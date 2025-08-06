@@ -1,0 +1,166 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 家庭關係
+  familyMembers FamilyMember[]
+  
+  // 任務關係
+  assignedTasks Task[] @relation("AssignedTo")
+  createdTasks  Task[] @relation("CreatedBy")
+  
+  // 積分記錄
+  pointRecords  PointRecord[]
+  
+  // 通知
+  notifications Notification[]
+
+  @@map("users")
+}
+
+model Family {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  inviteCode  String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 成員關係
+  members FamilyMember[]
+  
+  // 任務
+  tasks   Task[]
+  
+  // 積分記錄
+  pointRecords PointRecord[]
+
+  @@map("families")
+}
+
+model FamilyMember {
+  id       String           @id @default(cuid())
+  userId   String
+  familyId String
+  role     FamilyMemberRole @default(MEMBER)
+  joinedAt DateTime         @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  family Family @relation(fields: [familyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, familyId])
+  @@map("family_members")
+}
+
+model Task {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  points      Int        @default(0)
+  category    String
+  priority    TaskPriority @default(MEDIUM)
+  status      TaskStatus @default(PENDING)
+  
+  // 時間相關
+  dueDate     DateTime?
+  completedAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  // 關係
+  familyId    String
+  assignedToId String?
+  createdById String
+
+  family     Family @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  assignedTo User?  @relation("AssignedTo", fields: [assignedToId], references: [id])
+  createdBy  User   @relation("CreatedBy", fields: [createdById], references: [id])
+
+  // 積分記錄
+  pointRecords PointRecord[]
+
+  @@map("tasks")
+}
+
+model PointRecord {
+  id          String           @id @default(cuid())
+  userId      String
+  familyId    String
+  taskId      String?
+  points      Int
+  type        PointRecordType
+  description String?
+  createdAt   DateTime         @default(now())
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  family Family  @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  task   Task?   @relation(fields: [taskId], references: [id], onDelete: SetNull)
+
+  @@map("point_records")
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  title     String
+  content   String
+  type      NotificationType
+  isRead    Boolean          @default(false)
+  data      Json?            // 額外數據，如任務ID等
+  createdAt DateTime         @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+// 列舉類型
+enum FamilyMemberRole {
+  ADMIN
+  MEMBER
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum PointRecordType {
+  EARNED      // 完成任務獲得
+  BONUS       // 額外獎勵
+  PENALTY     // 懲罰扣分
+}
+
+enum NotificationType {
+  TASK_ASSIGNED    // 任務分配
+  TASK_REMINDER    // 任務提醒
+  TASK_COMPLETED   // 任務完成
+  FAMILY_INVITE    // 家庭邀請
+  ACHIEVEMENT      // 成就解鎖
+}

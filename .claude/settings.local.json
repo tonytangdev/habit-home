@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(npm install)",
+      "Bash(mkdir:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run type-check:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npm install:*)",
+      "Bash(rm:*)",
+      "Bash(npx prisma:*)",
+      "Bash(git log:*)",
+      "Bash(cat:*)",
+      "Bash(DATABASE_URL=\"file:./prisma/dev.db\" npx prisma db push)"
+    ],
+    "deny": []
+  }
+}
