@@ -14,7 +14,8 @@
       "Bash(npx prisma:*)",
       "Bash(git log:*)",
       "Bash(cat:*)",
-      "Bash(DATABASE_URL=\"file:./prisma/dev.db\" npx prisma db push)"
+      "Bash(DATABASE_URL=\"file:./prisma/dev.db\" npx prisma db push)",
+      "Bash(npm run build:*)"
     ],
     "deny": []
   }
