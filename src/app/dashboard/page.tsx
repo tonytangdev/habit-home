@@ -120,7 +120,7 @@ export default function DashboardPage() {
         }
         setUser(userResponse.data as User);
 
-        // 載入統計數據、家庭列表和任務列表
+        // 載入統計數據、群組列表和任務列表
         const [statsResponse, familiesResponse, tasksResponse] = await Promise.all([
           apiClient.getStats(),
           apiClient.getFamilies(),
@@ -297,22 +297,22 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* 家庭列表 */}
+        {/* 群組列表 */}
         <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-gray-900">我的家庭</h2>
+            <h2 className="text-xl font-bold text-gray-900">我的群組</h2>
             <div className="flex space-x-2">
               <button
                 onClick={() => setShowJoinFamily(true)}
                 className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors"
               >
-                加入家庭
+                加入群組
               </button>
               <button
                 onClick={() => setShowCreateFamily(true)}
                 className="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
               >
-                創建家庭
+                創建群組
               </button>
             </div>
           </div>
@@ -342,20 +342,20 @@ export default function DashboardPage() {
           ) : (
             <div className="text-center py-8">
               <span className="text-4xl mb-4 block">👥</span>
-              <h3 className="font-semibold text-gray-900 mb-2">還沒有加入任何家庭</h3>
-              <p className="text-gray-600 mb-4">創建新家庭或使用邀請碼加入現有家庭</p>
+              <h3 className="font-semibold text-gray-900 mb-2">還沒有加入任何群組</h3>
+              <p className="text-gray-600 mb-4">創建新群組或使用邀請碼加入現有群組</p>
               <div className="flex justify-center space-x-3">
                 <button
                   onClick={() => setShowJoinFamily(true)}
                   className="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors"
                 >
-                  加入家庭
+                  加入群組
                 </button>
                 <button
                   onClick={() => setShowCreateFamily(true)}
                   className="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
                 >
-                  創建家庭
+                  創建群組
                 </button>
               </div>
             </div>
@@ -365,9 +365,9 @@ export default function DashboardPage() {
         {/* 任務管理區域 */}
         {families.length > 0 && (
           <div className="bg-white rounded-xl shadow-sm p-6">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between flex-wrap items-center mb-4 gap-3">
               <h2 className="text-xl font-bold text-gray-900">任務管理</h2>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center  flex-wrap gap-3">
                 {/* 排序選擇器 */}
                 <div className="flex items-center space-x-2">
                   <span className="text-gray-600">排序方式：</span>
@@ -425,10 +425,10 @@ export default function DashboardPage() {
         )}
       </main>
 
-      {/* 創建家庭彈窗 */}
+      {/* 創建群組彈窗 */}
       {showCreateFamily && <CreateFamilyModal onClose={() => setShowCreateFamily(false)} onSuccess={handleDataRefresh} />}
 
-      {/* 加入家庭彈窗 */}
+      {/* 加入群組彈窗 */}
       {showJoinFamily && <JoinFamilyModal onClose={() => setShowJoinFamily(false)} onSuccess={handleDataRefresh} />}
 
       {/* 創建任務彈窗 */}
@@ -527,17 +527,17 @@ function TaskCard({
 
   return (
     <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-      <div className="flex justify-between items-start mb-3">
+      <div className="flex justify-between items-start mb-3 gap-5">
         <div className="flex-1">
-          <h3 className="font-semibold text-gray-900 mb-1">{task.title}</h3>
+          <h3 className="font-semibold text-gray-900 mb-3">{task.title}</h3>
           {task.description && (
-            <p className="text-sm text-gray-600 mb-2">{task.description}</p>
+            <p className="text-base bold text-gray-600 mb-2 border p-3">{task.description}</p>
           )}
-          <div className="flex items-center space-x-3 text-sm">
-            <span className="text-gray-500">家庭：{task.family.name}</span>
-            <span className="text-gray-500">分類：{task.category}</span>
+          <div className="flex items-center flex-wrap gap-5 text-sm">
+            <span className="text-gray-500">群組: {task.family.name}</span>
+            <span className="text-gray-500">分類: {task.category}</span>
             {task.points > 0 && (
-              <span className="text-primary-600 font-medium">🏆 {task.points} 分</span>
+              <span className="text-primary-600 font-medium">🏆 積分: {task.points} 分</span>
             )}
           </div>
         </div>
@@ -558,7 +558,7 @@ function TaskCard({
               className="p-1 text-gray-400 hover:text-blue-600 transition-colors"
               title="編輯任務"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
             </button>
@@ -567,7 +567,7 @@ function TaskCard({
               className="p-1 text-gray-400 hover:text-red-600 transition-colors"
               title="刪除任務"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
             </button>
@@ -575,7 +575,7 @@ function TaskCard({
         </div>
       </div>
 
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-wrap gap-4">
         <div className="flex items-center space-x-4 text-sm text-gray-500">
           {task.assignedTo ? (
             <div className="flex items-center space-x-2">
@@ -600,7 +600,7 @@ function TaskCard({
             {task.status === 'PENDING' && (
               <button
                 onClick={() => handleStatusUpdate('IN_PROGRESS')}
-                className="px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs font-medium rounded-md transition-colors"
+                className="px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xl font-medium rounded-md transition-colors"
               >
                 開始
               </button>
@@ -608,7 +608,7 @@ function TaskCard({
             {task.status === 'IN_PROGRESS' && (
               <button
                 onClick={() => handleStatusUpdate('COMPLETED')}
-                className="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 text-xs font-medium rounded-md transition-colors"
+                className="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 text-xl font-medium rounded-md transition-colors"
               >
                 完成
               </button>
@@ -718,10 +718,10 @@ function CreateTaskModal({ families, onClose, onSuccess }: {
             />
           </div>
 
-          {/* 家庭選擇 */}
+          {/* 群組選擇 */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              選擇家庭 *
+              選擇群組 *
             </label>
             <select
               value={formData.familyId}
@@ -949,10 +949,10 @@ function EditTaskModal({ task, families, onClose, onSuccess }: {
             />
           </div>
 
-          {/* 家庭選擇 */}
+          {/* 群組選擇 */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              選擇家庭 *
+              選擇群組 *
             </label>
             <select
               value={formData.familyId}
@@ -1078,7 +1078,7 @@ function EditTaskModal({ task, families, onClose, onSuccess }: {
   );
 }
 
-// 創建家庭彈窗組件
+// 創建群組彈窗組件
 function CreateFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSuccess: () => void }) {
   const [formData, setFormData] = useState({ name: '', description: '' });
   const [isLoading, setIsLoading] = useState(false);
@@ -1095,10 +1095,10 @@ function CreateFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucc
         onSuccess();
         onClose();
       } else {
-        setError(response.error || '創建家庭失敗');
+        setError(response.error || '創建群組失敗');
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : '創建家庭失敗');
+      setError(error instanceof Error ? error.message : '創建群組失敗');
     } finally {
       setIsLoading(false);
     }
@@ -1107,7 +1107,7 @@ function CreateFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucc
   return (
     <div className="text-gray-600 fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">創建新家庭</h3>
+        <h3 className="text-lg font-bold text-gray-900 mb-4">創建新群組</h3>
         
         {error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
@@ -1118,27 +1118,27 @@ function CreateFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucc
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              家庭名稱 *
+              群組名稱 *
             </label>
             <input
               type="text"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
-              placeholder="請輸入家庭名稱"
+              placeholder="請輸入群組名稱"
               required
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              家庭描述
+              群組描述
             </label>
             <textarea
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
-              placeholder="簡單描述一下這個家庭..."
+              placeholder="簡單描述一下這個群組..."
               rows={3}
             />
           </div>
@@ -1156,7 +1156,7 @@ function CreateFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucc
               disabled={isLoading || !formData.name.trim()}
               className="px-6 py-2 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors"
             >
-              {isLoading ? '創建中...' : '創建家庭'}
+              {isLoading ? '創建中...' : '創建群組'}
             </button>
           </div>
         </form>
@@ -1165,7 +1165,7 @@ function CreateFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucc
   );
 }
 
-// 加入家庭彈窗組件
+// 加入群組彈窗組件
 function JoinFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSuccess: () => void }) {
   const [inviteCode, setInviteCode] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -1182,10 +1182,10 @@ function JoinFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucces
         onSuccess();
         onClose();
       } else {
-        setError(response.error || '加入家庭失敗');
+        setError(response.error || '加入群組失敗');
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : '加入家庭失敗');
+      setError(error instanceof Error ? error.message : '加入群組失敗');
     } finally {
       setIsLoading(false);
     }
@@ -1194,7 +1194,7 @@ function JoinFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucces
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">加入家庭</h3>
+        <h3 className="text-lg font-bold text-gray-900 mb-4">加入群組</h3>
         
         {error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
@@ -1217,7 +1217,7 @@ function JoinFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucces
               required
             />
             <p className="text-sm text-gray-500 mt-2">
-              請輸入家庭管理員提供的邀請碼
+              請輸入群組管理員提供的邀請碼
             </p>
           </div>
 
@@ -1234,7 +1234,7 @@ function JoinFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucces
               disabled={isLoading || !inviteCode.trim()}
               className="px-6 py-2 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors"
             >
-              {isLoading ? '加入中...' : '加入家庭'}
+              {isLoading ? '加入中...' : '加入群組'}
             </button>
           </div>
         </form>
