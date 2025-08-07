@@ -78,13 +78,14 @@ export default function AuthPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
               {isLogin ? '歡迎回來' : '開始你的家務分配之旅'}
             </h2>
-            <p className="text-gray-600">
-              {isLogin ? '登入你的帳戶' : '創建新帳戶'}
-            </p>
           </div>
 
           {/* Auth Form */}
           <div className="bg-white rounded-xl shadow-lg p-8">
+            <p className="text-gray-600 text-center mb-4 text-lg">
+                {isLogin ? '登入你的帳戶' : '創建新帳戶'}
+            </p>
+            
             {error && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                 <p className="text-red-800 text-sm">{error}</p>
@@ -104,7 +105,7 @@ export default function AuthPage() {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
+                    className="text-gray-600 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
                     placeholder="請輸入你的姓名"
                     required
                   />
@@ -122,7 +123,7 @@ export default function AuthPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
+                  className="text-gray-600 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
                   placeholder="請輸入你的電子郵件"
                   required
                 />
@@ -139,7 +140,7 @@ export default function AuthPage() {
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
+                  className="text-gray-600 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
                   placeholder="請輸入你的密碼"
                   required
                 />
@@ -157,7 +158,7 @@ export default function AuthPage() {
                     name="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
+                    className="text-gray-600 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
                     placeholder="請再次輸入密碼"
                     required
                   />
@@ -211,7 +212,7 @@ export default function AuthPage() {
               href="/"
               className="text-primary-600 hover:text-primary-700 font-medium"
             >
-              ← 返回首頁
+              返回首頁
             </Link>
           </div>
         </div>

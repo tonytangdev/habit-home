@@ -199,6 +199,11 @@ export default function DashboardPage() {
     }
   };
 
+  const handleCopyInviteCode = (inviteCode: string) => {
+    navigator.clipboard.writeText(inviteCode);
+    alert('已複製邀請碼');
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -216,17 +221,17 @@ export default function DashboardPage() {
       <nav className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
-            <Link href="/" className="flex items-center space-x-2">
+            {/* <Link href="/" className="flex items-center space-x-2"> */}
               <span className="text-2xl font-bold text-primary-600">🏠 HabitHome</span>
-            </Link>
+            {/* </Link> */}
             
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                {/* <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
                   <span className="text-primary-600 font-semibold text-sm">
                     {user?.name?.charAt(0).toUpperCase()}
                   </span>
-                </div>
+                </div> */}
                 <span className="text-gray-700 font-medium">{user?.name}</span>
               </div>
               
@@ -324,8 +329,12 @@ export default function DashboardPage() {
                     <span>{family._count.members} 位成員</span>
                     <span>{family._count.tasks} 個任務</span>
                   </div>
-                  <div className="mt-3 text-xs text-gray-400">
-                    邀請碼：{family.inviteCode}
+                  <div className="mt-5 flex items-center gap-2 justify-between">
+                    <span className='text-gray-500 bg-gray-100 rounded-lg px-2 py-1 w-full'>邀請碼：{family.inviteCode}</span>
+
+                    <button className="text-gray-500 hover:text-gray-700 text-nowrap" onClick={() => handleCopyInviteCode(family.inviteCode)}>
+                    複製邀請碼
+                    </button>
                   </div>
                 </div>
               ))}
@@ -361,11 +370,11 @@ export default function DashboardPage() {
               <div className="flex items-center space-x-4">
                 {/* 排序選擇器 */}
                 <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-600">排序方式：</span>
+                  <span className="text-gray-600">排序方式：</span>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
-                    className="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                    className="text-gray-600 px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
                   >
                     <option value="dueDate">最接近今日</option>
                     <option value="priority">重要程度</option>
@@ -570,11 +579,11 @@ function TaskCard({
         <div className="flex items-center space-x-4 text-sm text-gray-500">
           {task.assignedTo ? (
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+              {/* <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
                 <span className="text-primary-600 font-semibold text-xs">
                   {task.assignedTo.name.charAt(0).toUpperCase()}
                 </span>
-              </div>
+              </div> */}
               <span>分配給 {task.assignedTo.name}</span>
             </div>
           ) : (
@@ -670,7 +679,7 @@ function CreateTaskModal({ families, onClose, onSuccess }: {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
+      <div className="text-gray-600 bg-white rounded-lg p-6 w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
         <h3 className="text-lg font-bold text-gray-900 mb-4">創建新任務</h3>
         
         {error && (
@@ -900,7 +909,7 @@ function EditTaskModal({ task, families, onClose, onSuccess }: {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="text-gray-600 fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
         <h3 className="text-lg font-bold text-gray-900 mb-4">編輯任務</h3>
         
@@ -1096,7 +1105,7 @@ function CreateFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucc
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="text-gray-600 fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
         <h3 className="text-lg font-bold text-gray-900 mb-4">創建新家庭</h3>
         
@@ -1195,19 +1204,19 @@ function JoinFamilyModal({ onClose, onSuccess }: { onClose: () => void; onSucces
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               邀請碼
             </label>
             <input
               type="text"
               value={inviteCode}
               onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none text-center text-lg font-mono"
+              className="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none text-center text-lg font-mono"
               placeholder="輸入6位數邀請碼"
               maxLength={8}
               required
             />
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-gray-500 mt-2">
               請輸入家庭管理員提供的邀請碼
             </p>
           </div>
