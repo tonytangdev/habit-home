@@ -1,9 +1,12 @@
 import { PrismaClient } from '@prisma/client'
 
+//建立全域變數
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
 
+//建立全域變數
 export const prisma = globalForPrisma.prisma ?? new PrismaClient()
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+//將全域變數設為prisma
+globalForPrisma.prisma = prisma
