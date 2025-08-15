@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getTranslations, type Locale } from '@/lib/translations';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export default async function Home({
   params,
@@ -12,12 +13,8 @@ export default async function Home({
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Language Switcher */}
-      <div className="absolute top-4 right-4 bg-white p-2 rounded">
-        <p>Current locale: <strong>{locale}</strong></p>
-        <div className="flex gap-2 mt-2">
-          <Link href="/zh" className="text-blue-600">中文</Link>
-          <Link href="/en" className="text-blue-600">English</Link>
-        </div>
+      <div className="absolute top-6 right-6 z-10">
+        <LanguageSwitcher />
       </div>
       
       <div className="container mx-auto px-4 py-16">

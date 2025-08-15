@@ -80,7 +80,7 @@ export default function TaskCard({
               <span className="text-gray-500">{t('dashboard.tasks.group')}: {task.family.name}</span>
               <span className="text-gray-500">{t('dashboard.tasks.category')}: {task.category}</span>
               {task.points > 0 && (
-                <span className="text-primary-600 font-medium">🏆 {t('common.points')}: {task.points} 分</span>
+                <span className="text-primary-600 font-medium">🏆 {t('common.points')}: {task.points}</span>
               )}
             </div>
           </div>

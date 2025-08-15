@@ -9,6 +9,7 @@ import DeleteConfirmModal from "@/components/DeleteConfirmModal";
 import EditTaskModal from "@/components/EditTaskModal";
 import JoinFamilyModal from "@/components/JoinFamilyModal";
 import TaskCard from "@/components/TaskCard";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { getTranslations, type Locale } from '@/lib/translations';
 
 export default function DashboardPage() {
@@ -178,6 +179,8 @@ export default function DashboardPage() {
                 </div> */}
                 <span className="text-gray-700 font-medium">{user?.name}</span>
               </div>
+              
+              <LanguageSwitcher />
               
               <button
                 onClick={handleLogout}
