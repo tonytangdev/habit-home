@@ -41,8 +41,9 @@ export default function CreateTaskModal({ families, onClose, onSuccess, locale =
         const response = await apiClient.createTask({
           ...formData,
           points: Number(formData.points),
-          dueDate: formData.dueDate || undefined,
-          assignedToId: formData.assignedToId || undefined
+          dueDate: formData.dueDate ? new Date(formData.dueDate + 'T23:59:59.999Z').toISOString() : undefined,
+          assignedToId: formData.assignedToId || undefined,
+          locale
         });
         
         if (response.success) {
