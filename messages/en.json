@@ -219,6 +219,67 @@
     "deleteTask": "Delete Task",
     "updateError": "Failed to update task status"
   },
+  "about": {
+    "subtitle": "Smart chore distribution tool that makes family life more harmonious",
+    "sections": {
+      "distribution": {
+        "title": "Smart Fair Distribution",
+        "description": "HabitHome uses advanced algorithms to ensure fair chore distribution, considering each member's:",
+        "features": [
+          "Personal preferences and preferred chore types",
+          "Available time and work schedule", 
+          "Physical abilities and limitations",
+          "Past task completion performance"
+        ],
+        "summary": "The system automatically adjusts task allocation to ensure everyone contributes to the household under reasonable burden."
+      },
+      "tracking": {
+        "title": "Real-time Progress Tracking",
+        "description": "Through an intuitive dashboard, all family members can clearly see:",
+        "features": [
+          "Current pending task list",
+          "Each member's task completion status",
+          "Weekly and monthly chore statistics",
+          "Important chore reminders that are due soon"
+        ],
+        "summary": "Maintain a transparent communication environment and avoid friction caused by uneven chore distribution."
+      },
+      "points": {
+        "title": "Motivational Point System", 
+        "description": "Make doing chores fun! Our point system includes:",
+        "features": [
+          "Earn point rewards for completing tasks",
+          "Get bonus rewards for consecutive completions",
+          "Monthly chore star leaderboard",
+          "Achievement badges and milestone celebrations"
+        ],
+        "summary": "Quantify everyone's contributions, boost participation motivation, and make chore distribution something to look forward to."
+      }
+    },
+    "steps": {
+      "title": "How to Get Started",
+      "step1": {
+        "title": "Sign Up",
+        "description": "Create your HabitHome account and start your smart chore management journey"
+      },
+      "step2": {
+        "title": "Create Family",
+        "description": "Invite family members to join and set up everyone's preferences and schedules"
+      },
+      "step3": {
+        "title": "Set Up Tasks", 
+        "description": "Add your household's daily chores, and the system will intelligently assign them to suitable members"
+      },
+      "step4": {
+        "title": "Start Executing",
+        "description": "Complete tasks according to assignments, earn points, and enjoy a harmonious family life"
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Sign up for HabitHome today and let AI help your family establish a better chore distribution system"
+    }
+  },
   "api": {
     "errors": {
       "unauthorized": "Unauthorized access",

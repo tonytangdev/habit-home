@@ -22,7 +22,14 @@
       "Bash(cp:*)",
       "WebSearch",
       "mcp__playwright__browser_navigate",
-      "mcp__playwright__browser_snapshot"
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_type",
+      "mcp__playwright__browser_select_option",
+      "Bash(git reset:*)",
+      "Bash(git push:*)",
+      "Bash(git checkout:*)",
+      "mcp__playwright__browser_take_screenshot"
     ],
     "deny": []
   }
