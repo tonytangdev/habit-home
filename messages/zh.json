@@ -1,0 +1,237 @@
+{
+  "common": {
+    "appName": "HabitHome",
+    "loading": "載入中...",
+    "error": "錯誤",
+    "success": "成功",
+    "cancel": "取消",
+    "save": "保存",
+    "edit": "編輯",
+    "delete": "刪除",
+    "confirm": "確認",
+    "points": "積分",
+    "processing": "處理中..."
+  },
+  "navigation": {
+    "home": "首頁",
+    "dashboard": "儀表板",
+    "about": "關於",
+    "logout": "登出",
+    "getStarted": "開始使用",
+    "learnMore": "了解更多",
+    "backToHome": "返回首頁"
+  },
+  "home": {
+    "hero": {
+      "title": "HabitHome",
+      "subtitle": "智能家務分配工具，讓情侶、室友和家庭成員",
+      "subtitle2": "公平分擔家務，建立和諧美好的居家環境"
+    },
+    "features": {
+      "fairDistribution": {
+        "title": "公平分配",
+        "description": "基於每個人的偏好、能力和時間，智能分配家務任務"
+      },
+      "progressTracking": {
+        "title": "進度追蹤",
+        "description": "實時查看任務完成情況，保持透明的溝通環境"
+      },
+      "pointSystem": {
+        "title": "積分系統",
+        "description": "量化每個人的貢獻，提升參與動機和成就感"
+      }
+    },
+    "status": {
+      "title": "開發狀態",
+      "description": "專案正在開發中，敬請期待！我們正在打造最棒的家務分配體驗。",
+      "mvp": "MVP 開發階段"
+    }
+  },
+  "auth": {
+    "welcome": "歡迎回來",
+    "getStarted": "開始你的家務分配之旅",
+    "login": "登入你的帳戶",
+    "register": "創建新帳戶",
+    "name": "姓名",
+    "email": "電子郵件",
+    "password": "密碼",
+    "confirmPassword": "確認密碼",
+    "loginButton": "登入",
+    "registerButton": "註冊",
+    "noAccount": "還沒有帳戶？",
+    "hasAccount": "已經有帳戶了？",
+    "registerNow": "立即註冊",
+    "loginNow": "立即登入",
+    "terms": "繼續使用即表示你同意我們的服務條款和隱私政策",
+    "placeholders": {
+      "name": "請輸入你的姓名",
+      "email": "請輸入你的電子郵件",
+      "password": "請輸入你的密碼",
+      "confirmPassword": "請再次輸入密碼"
+    },
+    "errors": {
+      "loginFailed": "登入失敗",
+      "registerFailed": "註冊失敗",
+      "passwordMismatch": "密碼確認不匹配",
+      "unknownError": "發生未知錯誤"
+    }
+  },
+  "dashboard": {
+    "welcome": "歡迎回來，{name}！",
+    "subtitle": "準備好開始智能分配家務了嗎？",
+    "stats": {
+      "myPendingTasks": "我的待辦任務",
+      "myCompleted": "我已完成",
+      "totalPoints": "總積分"
+    },
+    "groups": {
+      "title": "我的群組",
+      "joinGroup": "加入群組",
+      "createGroup": "創建群組",
+      "members": "位成員",
+      "tasks": "個任務",
+      "inviteCode": "邀請碼",
+      "copyInviteCode": "複製邀請碼",
+      "inviteCodeCopied": "已複製邀請碼",
+      "noGroups": {
+        "title": "還沒有加入任何群組",
+        "description": "創建新群組或使用邀請碼加入現有群組"
+      }
+    },
+    "tasks": {
+      "title": "任務管理",
+      "sortBy": "排序方式：",
+      "sortOptions": {
+        "dueDate": "最接近今日",
+        "priority": "重要程度",
+        "completion": "完成程度"
+      },
+      "createTask": "創建任務",
+      "noTasks": {
+        "title": "還沒有任務",
+        "description": "創建第一個家務任務開始分配吧！"
+      },
+      "group": "群組",
+      "category": "分類",
+      "assignedTo": "分配給",
+      "unassigned": "尚未分配",
+      "dueDate": "截止",
+      "start": "開始",
+      "complete": "完成"
+    }
+  },
+  "taskModal": {
+    "create": {
+      "title": "創建新任務",
+      "button": "創建任務",
+      "loading": "創建中..."
+    },
+    "edit": {
+      "title": "編輯任務",
+      "button": "更新任務",
+      "loading": "更新中..."
+    },
+    "fields": {
+      "title": "任務標題",
+      "titleRequired": "任務標題 *",
+      "description": "任務描述",
+      "group": "選擇群組 *",
+      "assignTo": "分配給成員",
+      "assignLater": "稍後分配",
+      "category": "任務分類 *",
+      "selectCategory": "選擇分類",
+      "points": "獎勵積分",
+      "priority": "優先級",
+      "dueDate": "截止日期"
+    },
+    "placeholders": {
+      "title": "例如：打掃客廳、洗碗、整理房間...",
+      "description": "描述任務的具體要求..."
+    },
+    "categories": {
+      "cleaning": "清潔打掃",
+      "laundry": "洗衣整理",
+      "cooking": "廚房料理",
+      "shopping": "採購物品",
+      "maintenance": "維護修理",
+      "petCare": "照顧寵物",
+      "garden": "庭院整理",
+      "other": "其他"
+    },
+    "priorities": {
+      "low": "低優先級",
+      "medium": "中等",
+      "high": "高優先級",
+      "urgent": "緊急"
+    },
+    "errors": {
+      "createFailed": "創建任務失敗",
+      "updateFailed": "更新任務失敗"
+    }
+  },
+  "groupModal": {
+    "create": {
+      "title": "創建新群組",
+      "button": "創建群組",
+      "loading": "創建中..."
+    },
+    "join": {
+      "title": "加入群組",
+      "button": "加入群組",
+      "loading": "加入中...",
+      "inviteCode": "邀請碼",
+      "inviteCodePlaceholder": "輸入6位數邀請碼",
+      "description": "請輸入群組管理員提供的邀請碼"
+    },
+    "fields": {
+      "name": "群組名稱 *",
+      "namePlaceholder": "請輸入群組名稱",
+      "description": "群組描述",
+      "descriptionPlaceholder": "簡單描述一下這個群組..."
+    },
+    "errors": {
+      "createFailed": "創建群組失敗",
+      "joinFailed": "加入群組失敗"
+    }
+  },
+  "deleteModal": {
+    "title": "確認刪除任務",
+    "message": "您確定要刪除任務「{title}」嗎？",
+    "warning": "此操作無法撤銷，請謹慎確認。",
+    "button": "確認刪除",
+    "loading": "刪除中...",
+    "error": "刪除任務失敗"
+  },
+  "taskCard": {
+    "status": {
+      "completed": "已完成",
+      "inProgress": "進行中",
+      "pending": "待處理",
+      "cancelled": "已取消"
+    },
+    "priorities": {
+      "high": "高優先級",
+      "urgent": "緊急",
+      "medium": "中等",
+      "low": "低優先級"
+    },
+    "editTask": "編輯任務",
+    "deleteTask": "刪除任務",
+    "updateError": "更新任務狀態失敗"
+  },
+  "api": {
+    "errors": {
+      "unauthorized": "未授權的訪問",
+      "invalidCredentials": "無效的認證信息",
+      "userExists": "用戶已存在",
+      "userNotFound": "用戶未找到",
+      "invalidToken": "無效的令牌",
+      "missingFields": "缺少必填字段",
+      "serverError": "服務器錯誤",
+      "dataLoadFailed": "載入數據失敗",
+      "loginFailed": "登入失敗",
+      "registerFailed": "註冊失敗",
+      "updateFailed": "更新數據失敗"
+    }
+  }
+}
